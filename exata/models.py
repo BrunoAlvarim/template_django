@@ -3,13 +3,11 @@ from uuid import uuid4
 from datetime import datetime
 
 class Funcionario(models.Model):
-
     EMPRESA = (
-        ('M','Matriz')
-        ('A','Filial Argentina')
+        ('M','Matriz'),
+        ('A','Filial Argentina'),
         ('E','Filial Estados Unidos')
     )
-
     nome = models.CharField(
         max_length=200,
         null=False,
@@ -24,9 +22,8 @@ class Funcionario(models.Model):
             max_length=1,
             blank=False,
             null=False,
-            #choices funciona para travar as escolhas do usuario ao que preencher nesse campo, travando nas opções que eu travei na dupla acima
             choices=EMPRESA,
-            default='M'        
+            default='M'
     )
     flag_ativo = models.BooleanField(
         null=False,
@@ -49,5 +46,9 @@ class Funcionario(models.Model):
     update_at = models.DateField(
         null=True
     )
-    def __str__(self):
+
+
+    # serve para representar o objeto externamente, caso seja chamado em algum metodo sera 
+    # retornado o nome e nao o id ou a chave
+    def __str__(self): 
         return self.nome
