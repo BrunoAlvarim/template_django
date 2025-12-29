@@ -37,17 +37,17 @@ class Funcionario(models.Model):
         editable=False, 
         unique=True
     )
-    create_at = models.DateField(
-        null=False,
-        blank=False,
-        default=datetime,
-        editable=False
+    # auto_now_add: grava a data quando cria
+    create_at = models.DateTimeField(
+        auto_now_add=True
     )
-    update_at = models.DateField(
+    
+    # auto_now: atualiza a data toda vez que o objeto mudar
+    update_at = models.DateTimeField(
+        auto_now=True,
         null=True
     )
-
-
+        
     # serve para representar o objeto externamente, caso seja chamado em algum metodo sera 
     # retornado o nome e nao o id ou a chave
     def __str__(self): 
